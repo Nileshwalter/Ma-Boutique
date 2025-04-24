@@ -1,0 +1,361 @@
+<!DOCTYPE html>  
+<html lang="fr">  
+<head>  
+<meta charset="UTF-8" />  
+<meta name="viewport" content="width=device-width, initial-scale=1" />  
+<title>Ma Boutique en Ligne</title>  
+<style>  
+  /* Reset basique */  
+  * {  
+    margin: 0; padding: 0; box-sizing: border-box;  
+  }  
+  body {  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
+    line-height: 1.6;  
+    background: #f9f9f9;  
+    color: #333;  
+  }  
+  a {  
+    color: #0066cc;  
+    text-decoration: none;  
+  }  
+  a:hover {  
+    text-decoration: underline;  
+  }  
+
+  header {  
+    background: #005a9c;  
+    color: white;  
+    padding: 1rem 2rem;  
+    position: sticky;  
+    top: 0;  
+    z-index: 100;  
+  }  
+  header nav {  
+    display: flex;  
+    justify-content: space-between;  
+    align-items: center;  
+  }  
+  header nav .logo {  
+    font-size: 1.7rem;  
+    font-weight: bold;  
+  }  
+  header nav ul {  
+    list-style: none;  
+    display: flex;  
+    gap: 1rem;  
+  }  
+  header nav ul li {  
+    padding: 0.3rem 0.5rem;  
+  }  
+  header nav ul li a {  
+    color: white;  
+    font-weight: 600;  
+  }  
+
+  main {  
+    max-width: 1100px;  
+    margin: 2rem auto;  
+    padding: 0 1rem;  
+  }  
+
+  section {  
+    margin-bottom: 4rem;  
+  }  
+
+  h1, h2, h3 {  
+    margin-bottom: 1rem;  
+    color: #005a9c;  
+  }  
+
+  /* Accueil */  
+  #accueil {  
+    background: #e3f2fd;  
+    padding: 3rem 2rem;  
+    border-radius: 8px;  
+    text-align: center;  
+  }  
+  #accueil h1 {  
+    font-size: 2.5rem;  
+    margin-bottom: 1rem;  
+  }  
+  #accueil p {  
+    font-size: 1.2rem;  
+    color: #333;  
+  }  
+
+  /* Boutique */  
+  #boutique .produits {  
+    display: grid;  
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));  
+    gap: 1.8rem;  
+  }  
+  .produit {  
+    background: white;  
+    border-radius: 6px;  
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);  
+    padding: 1rem;  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: space-between;  
+  }  
+  .produit img {  
+    max-width: 100%;  
+    border-radius: 6px;  
+    object-fit: cover;  
+    height: 160px;  
+  }  
+  .produit h3 {  
+    margin: 0.5rem 0;  
+    font-size: 1.2rem;  
+  }  
+  .produit p.description {  
+    font-size: 0.9rem;  
+    color: #666;  
+    flex-grow: 1;  
+  }  
+  .produit .prix {  
+    font-weight: bold;  
+    font-size: 1.1rem;  
+    margin: 0.8rem 0;  
+    color: #004080;  
+  }  
+  .produit button {  
+    background-color: #0073e6;  
+    border: none;  
+    color: white;  
+    padding: 0.6rem 0.8rem;  
+    cursor: pointer;  
+    border-radius: 4px;  
+    font-size: 1rem;  
+    transition: background-color 0.3s ease;  
+  }  
+  .produit button:hover {  
+    background-color: #005bb5;  
+  }  
+
+  /* A Propos */  
+  #apropos p {  
+    max-width: 700px;  
+    margin-bottom: 1rem;  
+  }  
+
+  /* Avis clients */  
+  #avis {  
+    background: #fff;  
+    padding: 2rem;  
+    border-radius: 8px;  
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);  
+  }  
+  .avis-client {  
+    margin-bottom: 1.5rem;  
+    border-left: 4px solid #005a9c;  
+    padding-left: 1rem;  
+  }  
+  .avis-client p {  
+    font-style: italic;  
+  }  
+  .avis-client .nom {  
+    font-weight: 700;  
+    margin-top: 0.3rem;  
+    color: #004080;  
+  }  
+
+  /* Comment commander */  
+  #commande ol {  
+    max-width: 700px;  
+    margin-left: 1.2rem;  
+    margin-bottom: 1rem;  
+  }  
+
+  /* Politiques */  
+  #politiques p {  
+    max-width: 700px;  
+    margin-bottom: 0.7rem;  
+  }  
+
+  /* Footer: réseaux sociaux */  
+  footer {  
+    background: #005a9c;  
+    color: white;  
+    text-align: center;  
+    padding: 1.8rem 1rem;  
+    font-size: 0.9rem;  
+  }  
+  footer .reseaux {  
+    margin-bottom: 0.8rem;  
+  }  
+  footer .reseaux a {  
+    margin: 0 0.6rem;  
+    color: white;  
+    font-size: 1.2rem;  
+    text-decoration: none;  
+    transition: color 0.3s ease;  
+  }  
+  footer .reseaux a:hover {  
+    color: #cce6ff;  
+  }  
+
+  /* Responsive nav menu for small screens */  
+  @media (max-width: 600px) {  
+    header nav ul {  
+      flex-direction: column;  
+      background: #003d73;  
+      position: absolute;  
+      right: 0; top: 60px;  
+      width: 120px;  
+      display: none;  
+      border-radius: 0 0 0 4px;  
+    }  
+    header nav ul.show {  
+      display: flex;  
+    }  
+    header nav .menu-toggle {  
+      display: block;  
+      cursor: pointer;  
+      font-size: 1.5rem;  
+      user-select: none;  
+    }  
+  }  
+  @media (min-width: 601px) {  
+    header nav .menu-toggle {  
+      display: none;  
+    }  
+  }  
+</style>  
+</head>  
+<body>  
+
+<header>  
+  <nav>  
+    <div class="logo">Ma Boutique</div>  
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>  
+    <ul id="menu-links">  
+      <li><a href="#accueil">Accueil</a></li>  
+      <li><a href="#boutique">Boutique</a></li>  
+      <li><a href="#apropos">À propos</a></li>  
+      <li><a href="#avis">Avis Clients</a></li>  
+      <li><a href="#commande">Comment Commander</a></li>  
+      <li><a href="#politiques">Politiques</a></li>  
+      <li><a href="#reseaux">Réseaux</a></li>  
+    </ul>  
+  </nav>  
+</header>  
+
+<main>  
+
+<section id="accueil" aria-label="Accueil">  
+  <h1>Bienvenue chez Ma Boutique</h1>  
+  <p>Découvrez nos produits uniques, sélectionnés avec soin pour vous offrir la meilleure qualité au meilleur prix. Explorez notre boutique dès maintenant !</p>  
+</section>  
+
+<section id="boutique" aria-label="Boutique et Produits">  
+  <h2>Nos Produits</h2>  
+  <div class="produits">  
+    <article class="produit" tabindex="0">  
+      <img src="https://via.placeholder.com/320x160?text=Produit+1" alt="Produit 1 : T-shirt élégant" loading="lazy">  
+      <h3>T-shirt élégant</h3>  
+      <p class="description">Un t-shirt confortable et moderne, idéal pour toutes les occasions.</p>  
+      <div class="prix">15 000 CFA</div>  
+      <button onclick="commander('T-shirt élégant - 15 000 CFA')">Commander</button>  
+    </article>  
+
+    <article class="produit" tabindex="0">  
+      <img src="https://via.placeholder.com/320x160?text=Produit+2" alt="Produit 2 : Casquette stylée" loading="lazy">  
+      <h3>Casquette stylée</h3>  
+      <p class="description">Protégez-vous du soleil avec cette casquette tendance et confortable.</p>  
+      <div class="prix">8 000 CFA</div>  
+      <button onclick="commander('Casquette stylée - 8 000 CFA')">Commander</button>  
+    </article>  
+
+    <article class="produit" tabindex="0">  
+      <img src="https://via.placeholder.com/320x160?text=Produit+3" alt="Produit 3 : Sac à dos résistant" loading="lazy">  
+      <h3>Sac à dos résistant</h3>  
+      <p class="description">Un sac à dos solide, idéal pour vos déplacements quotidiens ou voyages.</p>  
+      <div class="prix">22 000 CFA</div>  
+      <button onclick="commander('Sac à dos résistant - 22 000 CFA')">Commander</button>  
+    </article>  
+  </div>  
+</section>  
+
+<section id="apropos" aria-label="À propos">  
+  <h2>À propos de nous</h2>  
+  <p>Ma Boutique est née de la passion pour les produits de qualité et le service client irréprochable. Nous sélectionnons avec soin chaque article pour vous garantir satisfaction et confiance.</p>  
+  <p>Notre équipe dédiée est à votre écoute pour répondre à vos questions et vous accompagner dans votre expérience d'achat.</p>  
+</section>  
+
+<section id="avis" aria-label="Avis clients">  
+  <h2>Avis Clients Satisfaits</h2>  
+  <div class="avis-client" tabindex="0">  
+    <p>"Produits de très bonne qualité et livraison rapide. Je recommande vivement !" </p>  
+    <div class="nom">- Aissatou D.</div>  
+  </div>  
+  <div class="avis-client" tabindex="0">  
+    <p>"Le service client est très réactif. Très satisfait de mon achat."</p>  
+    <div class="nom">- Mamadou B.</div>  
+  </div>  
+  <div class="avis-client" tabindex="0">  
+    <p>"Large choix de produits, faciles à commander. Excellente expérience." </p>  
+    <div class="nom">- Fatou S.</div>  
+  </div>  
+</section>  
+
+<section id="commande" aria-label="Comment commander">  
+  <h2>Comment Commander</h2>  
+  <p>Suivez ces étapes simples pour acheter chez nous :</p>  
+  <ol>  
+    <li>Sur la page Boutique, cliquez sur le bouton "Commander" sous le produit souhaité.</li>  
+    <li>Vous serez invité à nous contacter via WhatsApp pour confirmer votre commande.</li>  
+    <li>Un membre de notre équipe vous enverra les instructions de paiement, y compris les options Mobile Money (Moov Money, Orange Money, Mix By Yas, etc.) et Paydunia.</li>  
+    <li>Après confirmation du paiement, votre commande sera traitée et expédiée rapidement.</li>  
+  </ol>  
+  <button onclick="window.location.href='https://wa.me/221771234567'">Commander via WhatsApp</button>  
+  <p style="font-size: 0.9rem; color: #666; margin-top: 0.7rem;">*Numéro au format international, cliquez pour ouvrir WhatsApp.*</p>  
+</section>  
+
+<section id="politiques" aria-label="Politiques de la boutique">  
+  <h2>Politiques d'Achats et Confidentialité</h2>  
+
+  <h3>Politique d'Achats</h3>  
+  <p>Nous acceptons les paiements via Paydunia et Mobile Money. Assurez-vous de suivre les instructions fournies lors de la confirmation de votre commande.</p>  
+  <p>Les retours sont acceptés sous 7 jours après réception, uniquement si le produit est en état neuf et non utilisé.</p>  
+
+  <h3>Politique de Confidentialité</h3>  
+  <p>Vos données personnelles collectées lors de la commande sont utilisées uniquement pour le traitement et la livraison de votre commande.</p>  
+  <p>Nous ne partageons jamais vos informations avec des tiers sans votre accord explicite.</p>  
+</section>  
+
+<section id="reseaux" aria-label="Réseaux sociaux">  
+  <h2>Suivez-nous sur les réseaux sociaux</h2>  
+  <p>Restez connecté avec nous pour recevoir nos promotions et nouveautés.</p>  
+  <p>  
+    <a href="https://www.facebook.com/votreboutique" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://cdn-icons-png.flaticon.com/24/733/733547.png" alt="Facebook"></a>  
+    <a href="https://www.instagram.com/votreboutique" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://cdn-icons-png.flaticon.com/24/2111/2111463.png" alt="Instagram"></a>  
+    <a href="https://wa.me/221771234567" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://cdn-icons-png.flaticon.com/24/733/733585.png" alt="WhatsApp"></a>  
+  </p>  
+</section>  
+
+</main>  
+
+<footer>  
+  &copy; 2025 Ma Boutique. Tous droits réservés.  
+</footer>  
+
+<script>  
+  // Responsive menu toggle  
+  function toggleMenu() {  
+    const menu = document.getElementById("menu-links");  
+    menu.classList.toggle("show");  
+  }  
+
+  // Commander : ouverture du lien WhatsApp avec le produit dans message  
+  function commander(produit) {  
+    const message = encodeURIComponent("Bonjour, je souhaite commander : " + produit);  
+    const numero = "221771234567"; // Remplace par ton numéro WhatsApp international ici  
+    const url = `https://wa.me/${numero}?text=${message}`;  
+    window.open(url, '_blank');  
+  }  
+</script>  
+
+</body>  
+</html>  
